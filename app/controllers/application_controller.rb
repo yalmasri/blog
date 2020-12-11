@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# ApplicationController
 class ApplicationController < ActionController::API
   rescue_from StandardError do |err|
     render(
