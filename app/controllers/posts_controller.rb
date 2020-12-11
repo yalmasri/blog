@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :update, :destroy]
+
   def index
     posts = Post.all
     render json: { data: posts, meta: {} }, status: 200
@@ -18,14 +20,24 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find params[:id]
     render json: { data: @post, meta: {} }, status: 200
   end
 
   def update
+    if @post.update post_params
+      render json: { data: @post, meta: {} }, status: 200
+    else
+      render json: {
+        errors: @post.errors.messages,
+        messages: @post.errors.full_messages,
+        details: @post.errors.details
+      }, status: 422
+    end
   end
 
   def destroy
+    @post.destroy
+    render json: { data: {}, meta: {} }, status: 204
   end
 
   private
@@ -35,5 +47,6 @@ class PostsController < ApplicationController
   end
 
   def set_post
+    @post = Post.find params[:id]
   end
 end
