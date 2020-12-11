@@ -1,0 +1,55 @@
+AllCops:
+  EnabledByDefault: true
+  Exclude:
+    - '**/Rakefile'
+    - '**/config.ru'
+    - 'Gemfile'
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'spec/rails_helper.rb'
+    - 'spec/spec_helper.rb'
+    - "lib/tasks/**/*"
+    - "**/vendor/**/*"
+    - "./vendor/**/*"
+    - "vendor/**/*"
+    - "vendor/*"
+    - "vendor/"
+    - "vendor"
+
+Style/Copyright:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Exclude:
+    - "**/*_spec.rb"
+
+Metrics/MethodLength:
+  Exclude:
+
+Metrics/AbcSize:
+  Exclude:
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - "app/controllers/**/*"
+    - "app/models/**/*"
+    - "app/serializers/**/*"
+
+Layout/LineLength:
+  Max: 100
+  IgnoredPatterns: ['\A#']
+
+Lint/NumberConversion:
+  Enabled: false
+
+Lint/ConstantResolution:
+  Enabled: false
+
+Style/DisableCopsWithinSourceCodeDirective:
+  Enabled: false
