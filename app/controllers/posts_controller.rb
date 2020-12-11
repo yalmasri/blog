@@ -18,6 +18,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find params[:id]
+    render json: { data: @post, meta: {} }, status: 200
   end
 
   def update
