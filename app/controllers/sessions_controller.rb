@@ -17,9 +17,10 @@ class SessionsController < ApplicationController
   private
 
   def sign_in
+    access_token = @user.generate_access_token!
     {
       email: @user.email,
-      token: '123123123'
+      token: access_token.token
     }
   end
 

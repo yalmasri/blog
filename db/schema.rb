@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_13_234158) do
+ActiveRecord::Schema.define(version: 2020_12_14_002450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "access_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "owner_type"
+    t.bigint "owner_id"
+    t.string "token", null: false
+    t.datetime "expires_in", null: false
+    t.index ["owner_type", "owner_id"], name: "index_access_tokens_on_owner_type_and_owner_id"
+    t.index ["token"], name: "index_access_tokens_on_token"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
