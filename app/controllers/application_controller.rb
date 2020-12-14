@@ -2,6 +2,9 @@
 
 # ApplicationController
 class ApplicationController < ActionController::API
+  # include ActionController::HttpAuthentication::Token::ControllerMethods
+  include ActionView::Helpers::TranslationHelper
+
   rescue_from StandardError do |err|
     render(
       json: {
