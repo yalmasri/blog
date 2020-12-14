@@ -5,6 +5,22 @@ ruby '2.7.1'
 
 gem 'devise'
 
+
+group :development, :test do
+  gem 'dotenv-rails', require: true
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
+  gem 'rspec-collection_matchers'
+  gem 'ffaker'
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
+end
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 # Use postgresql as the database for Active Record
@@ -30,7 +46,6 @@ gem 'rack-cors'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rubocop-rails', require: false
 end
 
 group :development do
