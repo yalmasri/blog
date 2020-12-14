@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_action :authenticate!, only: :create
   before_action :set_user, only: [:create]
 
   # POST /login
@@ -12,15 +13,16 @@ class SessionsController < ApplicationController
 
   # DELETE /logout
   def destroy
+    @access_token.destroy
+    render json: {}, status: 200
   end
 
   private
 
   def sign_in
-    access_token = @user.generate_access_token!
     {
       email: @user.email,
-      token: access_token.token
+      token: @user.generate_access_token!.token
     }
   end
 
@@ -31,7 +33,7 @@ class SessionsController < ApplicationController
         messages: [error_message],
         details: [error_code]
       },
-      status: :unprocessable_entity, #422
+      status: :unprocessable_entity, # 422
       meta: {}
     )
   end

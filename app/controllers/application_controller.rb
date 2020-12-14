@@ -33,6 +33,7 @@ class ApplicationController < ActionController::API
 
   private
 
+  # Authorization: Token token=YOUR_TOKEN;email=USER_EMAIL
   def authenticate_with_token
     authenticate_with_http_token do |token, options|
       @access_token = AccessToken.find_by token: token
