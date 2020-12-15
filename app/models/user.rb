@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :validatable
 
   # enumn
+  enum status: %i[active inactive]
 
   # validations
 

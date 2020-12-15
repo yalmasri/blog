@@ -1,5 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe User, type: :model do
+  context 'attributes' do
+    it { is_expected.to have_db_column(:email).of_type(:string) }
+    it do
+      is_expected.to define_enum_for(:status)
+        .with_values(%i[active inactive])
+    end
+  end
 end
