@@ -12,6 +12,7 @@ class User < ApplicationRecord
 
   # has_many relations
   has_many :access_tokens, as: :owner, inverse_of: :owner
+  has_many :posts, inverse_of: :user
 
   after_create :generate_access_token!
 
