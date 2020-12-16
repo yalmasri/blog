@@ -20,4 +20,8 @@ class User < ApplicationRecord
   def generate_access_token!
     access_tokens.create
   end
+
+  def active_for_authentication?
+    super && active?
+  end
 end

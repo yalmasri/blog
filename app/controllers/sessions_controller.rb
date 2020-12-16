@@ -21,8 +21,10 @@ class SessionsController < ApplicationController
 
   def sign_in
     {
-      email: @user.email,
-      token: @user.generate_access_token!.token
+      data: {
+        email: @user.email,
+        token: @user.generate_access_token!.token
+      }
     }
   end
 
